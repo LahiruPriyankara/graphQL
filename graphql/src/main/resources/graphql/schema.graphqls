@@ -1,0 +1,34 @@
+type Student {
+    id: ID!
+    firstName: String
+    lastName: String
+    age: Int
+    gender: Gender
+    studentClass: StudentClass
+}
+
+enum Gender{
+    MALE,
+    FEMALE
+}
+
+type StudentClass {
+    id: ID!
+    grade: String
+    teacherName: String
+    students: [Student]
+}
+
+type Query {
+    allStudent: [Student]!
+    findStudent(id: ID!): Student
+    allStudentClass: [StudentClass]!
+    findStudentClass(id: ID!): StudentClass
+    allStudentClassPage(page: Int!, size: Int!): [StudentClass]!
+}
+
+type Mutation {
+    createStudentClass(grade: String!,teacherName: String!): StudentClass!
+    updateStudentClass(id: ID!,grade: String!,teacherName: String!): StudentClass!
+    deleteStudentClass(id: ID!): Boolean!
+}
